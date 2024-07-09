@@ -1,5 +1,7 @@
 package org.example;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,4 +25,9 @@ public abstract class BankAccount {
             transactions.add("Depósito" + amount);
         }
     }
+
+    public double getBalance() {
+        return this.balance;
+    }
+
 }
