@@ -1,6 +1,5 @@
 package org.example;
 
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +22,33 @@ public abstract class BankAccount {
         if (amount > 0) {
             balance += amount;
             transactions.add("Depósito" + amount);
+        } else{
+            transactions.add("Flaha na tentatativa de Depósito:" + amount);
         }
+    }
+
+    public void printStatement(){
+        System.out.println("Extrato para" + customerName);
+
+        for (String transaction : transactions){
+            System.out.println(transaction);
+        }
+        System.out.println("Saldo Atual" + balance);
     }
 
     public double getBalance() {
         return this.balance;
     }
+
+    public void withdraw(double amount){
+        if(amount > 0 && amount <= balance){
+            balance -= amount;
+            transactions.add("Saque" + amount);
+        } else {
+            transactions.add("Falha na tentativa de saque: " + amount);
+        }
+    }
+
+    public abstract String getAccountDetails();
 
 }

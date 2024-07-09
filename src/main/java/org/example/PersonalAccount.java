@@ -9,4 +9,8 @@ public class PersonalAccount extends BankAccount{
         this.cpf = cpf;
     }
 
+    @Override
+    public String getAccountDetails(){
+        return "Personal Account [CPF:" + this.cpf + "]" ;
+    }
 }
