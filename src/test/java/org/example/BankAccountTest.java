@@ -2,16 +2,29 @@ package org.example;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
+
+@RunWith(MockitoJUnitRunner.class)
 
 public class BankAccountTest {
+
+    @Mock
+    private PrintStream mockPrintStream;
 
     private PersonalAccount personalAccount;
     private BusinessAccount businessAccount;
 
     @Before
     public void setUp() {
+        System.setOut(mockPrintStream);
+
         personalAccount = new PersonalAccount("Hilary Castelar", "Rua 123", 1000.0, "123.123.132-13");
         businessAccount = new BusinessAccount("Joao Alves", "Rua 12345", 10000.0, "72.227111/17237");
     }
@@ -42,5 +55,11 @@ public class BankAccountTest {
         assertEquals(1000, personalAccount.getBalance(), 0.01);
         assertEquals(10000, businessAccount.getBalance(), 0.01);
     }
+
+   @Test
+    public void testPrintStatement(){
+        personalAccount.printStatement();
+        verify(mockPrintStream).println("Extrato para: Hilary Castelar");
+   }
 
 }

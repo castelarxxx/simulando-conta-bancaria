@@ -23,12 +23,12 @@ public abstract class BankAccount {
             balance += amount;
             transactions.add("Depósito" + amount);
         } else{
-            transactions.add("Flaha na tentatativa de Depósito:" + amount);
+            transactions.add("Falha na tentatativa de Depósito:" + amount);
         }
     }
 
     public void printStatement(){
-        System.out.println("Extrato para" + customerName);
+        System.out.println("Extrato para: " + customerName);
 
         for (String transaction : transactions){
             System.out.println(transaction);
