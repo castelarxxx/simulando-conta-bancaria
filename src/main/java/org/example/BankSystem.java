@@ -54,7 +54,13 @@ public class BankSystem {
     public void login(String indentifier, String password){
         if (accountsDataBase.containsKey(indentifier)){
             BankAccount bankAccount = accountsDataBase.get(indentifier);
-            bankAccount.verifyPassword(password);
+           boolean passwordMatch= bankAccount.verifyPassword(password);
+
+           if (passwordMatch){
+               System.out.println("Usuário logado com sucesso. Bem vindo(a)" + bankAccount.getCustomerName());
+
+
+           }
         } else{
             System.out.println("Conta não encontrada");
         }

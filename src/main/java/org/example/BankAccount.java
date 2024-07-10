@@ -42,6 +42,10 @@ public abstract class BankAccount {
         return this.balance;
     }
 
+    public String getCustomerName(){
+        return this.customerName;
+    }
+
     public void withdraw(double amount){
         if(amount > 0 && amount <= balance){
             balance -= amount;
