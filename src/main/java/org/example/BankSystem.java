@@ -6,13 +6,48 @@ import java.util.Scanner;
 
 public class BankSystem {
 
-    private HashMap<String, BankAccount> accounts;
+    private HashMap<String, BankAccount> accountsDataBase;
     private Scanner scanner;
 
     public BankSystem(HashMap<String, BankAccount> accounts, Scanner scanner ){
-      this.accounts = accounts;
+      this.accountsDataBase = accounts;
        this.scanner = scanner;
     }
+
+    public void createAccount(){
+        System.out.println("Criando uma nova conta");
+        System.out.println("Digite o nome do cliente: ");
+        String name = scanner.nextLine();
+
+        System.out.println("Digite o endereço de cobrança: ");
+        String address = scanner.nextLine();
+
+        System.out.println("Digite o saldo inicial: ");
+        double balance = scanner.nextDouble();
+
+        System.out.println("Digite o tipo da conta (1 para pessoa física, 2 para jurídica: ");
+        int accountType = scanner.nextInt();
+        scanner.nextLine();
+
+        if(accountType == 1){
+            System.out.println("Digite o cpf: ");
+            String cpf = scanner.nextLine();
+            PersonalAccount personalAccount = new PersonalAccount(name, address, balance, cpf);
+            accountsDataBase.put(cpf, personalAccount);
+            System.out.println("Conta pessoal criada com sucesso");
+
+        } else if (accountType == 2){
+            System.out.println("Digite o cnpj: ");
+            String cnpj = scanner.nextLine();
+            BusinessAccount businessAccount = new BusinessAccount(name, address, balance, cnpj);
+            accountsDataBase.put(cnpj, businessAccount);
+            System.out.println("Conta jurídica criada com sucesso");
+        } else {
+            System.out.println("Operação Inválida");
+        }
+    }
+
+
     public static void main(String[] args) {
         HashMap<String, BankAccount> accounts = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
