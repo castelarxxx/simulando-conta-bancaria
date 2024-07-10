@@ -25,6 +25,10 @@ public class BankSystem {
         System.out.println("Digite o saldo inicial: ");
         double balance = scanner.nextDouble();
 
+
+        System.out.println("Digite uma senha: ");
+        String password = scanner.nextLine();
+
         System.out.println("Digite o tipo da conta (1 para pessoa física, 2 para jurídica: ");
         int accountType = scanner.nextInt();
         scanner.nextLine();
@@ -32,18 +36,27 @@ public class BankSystem {
         if(accountType == 1){
             System.out.println("Digite o cpf: ");
             String cpf = scanner.nextLine();
-            PersonalAccount personalAccount = new PersonalAccount(name, address, balance, cpf);
+            PersonalAccount personalAccount = new PersonalAccount(name, address, balance, password,  cpf);
             accountsDataBase.put(cpf, personalAccount);
             System.out.println("Conta pessoal criada com sucesso");
 
         } else if (accountType == 2){
             System.out.println("Digite o cnpj: ");
             String cnpj = scanner.nextLine();
-            BusinessAccount businessAccount = new BusinessAccount(name, address, balance, cnpj);
+            BusinessAccount businessAccount = new BusinessAccount(name, address, balance, password,  cnpj);
             accountsDataBase.put(cnpj, businessAccount);
             System.out.println("Conta jurídica criada com sucesso");
         } else {
             System.out.println("Operação Inválida");
+        }
+    }
+
+    public void login(String indentifier, String password){
+        if (accountsDataBase.containsKey(indentifier)){
+            BankAccount bankAccount = accountsDataBase.get(indentifier);
+            bankAccount.verifyPassword(password);
+        } else{
+            System.out.println("Conta não encontrada");
         }
     }
 

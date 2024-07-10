@@ -8,11 +8,13 @@ public abstract class BankAccount {
     private String customerName;
     private String billingAddress;
     private Double balance;
+    private String password;
     private List<String> transactions;
 
-    public BankAccount(String customerName, String billingAddress, Double initialBalance){
+    public BankAccount(String customerName, String billingAddress, Double initialBalance, String password){
         this.customerName = customerName;
         this.billingAddress = billingAddress;
+        this.password = password;
         this.balance = initialBalance;
         this.transactions = new ArrayList<>();
         this.transactions.add("Saldo Inicial" + initialBalance);
@@ -46,6 +48,14 @@ public abstract class BankAccount {
             transactions.add("Saque" + amount);
         } else {
             transactions.add("Falha na tentativa de saque: " + amount);
+        }
+    }
+
+    public boolean verifyPassword(String typedPassword){
+        if (typedPassword.equals(password)){
+          return true;
+        } else {
+            return false;
         }
     }
 

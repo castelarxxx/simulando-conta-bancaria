@@ -25,8 +25,8 @@ public class BankAccountTest {
     public void setUp() {
         System.setOut(mockPrintStream);
 
-        personalAccount = new PersonalAccount("Hilary Castelar", "Rua 123", 1000.0, "123.123.132-13");
-        businessAccount = new BusinessAccount("Joao Alves", "Rua 12345", 10000.0, "72.227111/17237");
+        personalAccount = new PersonalAccount("Hilary Castelar", "Rua 123", 1000.0, "123.123.132-13", "senha1111senha123312");
+        businessAccount = new BusinessAccount("Joao Alves", "Rua 12345", 10000.0, "72.227111/17237", "senha1234senha1234");
     }
 
     @Test
